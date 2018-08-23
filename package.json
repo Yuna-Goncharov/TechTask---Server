@@ -1,0 +1,18 @@
+{
+  "name": "api_restfull_task",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "app.js"
+  },
+  "author": "yuna goncharov",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mysql": "^2.16.0",
+    "winston": "^3.0.0"
+  }
+}
