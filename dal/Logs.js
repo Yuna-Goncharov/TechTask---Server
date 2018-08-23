@@ -1,30 +1,17 @@
 const express = require ('express');
-const http = require("http");
 const app = express();
 const mysql = require('mysql');
 const router = express.Router();
-
-
-router.get('/message', (req,res) => {
-    console.log("show this ");
-    res.end()
-});
-
-
 const connection = require('../config.js');
 
 
-const getLogs = router.get('/logs', function (req, res) {
+const getLogs = router.get('/logs',  (req, res) => {
     console.log(req);
     const queryString = "SELECT * FROM logs";
-    connection().query(queryString, function (err, rows, fields) {
-        if (err) {
-            console.log("Failed to query for users: " + err);
-            res.sendStatus(500);
-            return
-        }
+    connection().query(queryString,  (err, rows, fields) => {
+        if (error) return res.status(400).send({ error:true, message: 'Invalid request, please try again' });
         res.json(rows)
-    })
+    });
 });
 
 
@@ -34,7 +21,7 @@ const searchLogById = router.get('/logs/:logId', (req, res) => {
     let logId = req.params.logId;
     const queryString ="SELECT * FROM `logs` WHERE  `logId` = ?";
     connection().query(queryString, [logId],  (error, results, fields) => {
-        if (error) return res.status(400).send({ error:true, message: 'Invalid input, please try again' });
+        if (error) return res.status(400).send({ error:true, message: 'Invalid logId, please try again' });
 
         res.end(JSON.stringify(results));
     });
@@ -66,7 +53,7 @@ const deleteLog = router.delete('/logs/:logId',  (req, res) => {
     let logId = req.params.logId;
     const queryString = "DELETE FROM `logs` WHERE  `logId` = ?";
     connection().query(queryString, [logId],  (error, results, fields) => {
-        if (error)return res.status(400).send({ error:true, message: 'Invalid input, please try again' });
+        if (error)return res.status(400).send({ error:true, message: 'Invalid logId to delete, please try again' });
 
         console.log("Deleted log for log_Id:", results.logId);
         res.json({logId});
@@ -75,4 +62,4 @@ const deleteLog = router.delete('/logs/:logId',  (req, res) => {
 }) ;
 
 module.exports = router;
-//module.exports = bodyParser
+

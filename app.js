@@ -1,18 +1,19 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const http = require("http");
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const router = require('./dal/Logs.js');
-//const winston = require('./winstonLogs/winston.js');
+const winston = require('./winstonLogs/winston');
 
-app.use(morgan('combined')) ;//logs out logs on calls
+
+app.use(morgan('combined', { stream: winston.stream }));
+//logs out logs on calls
 
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
 
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: false
+    extended: true
 }));
 
 
