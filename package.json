@@ -1,12 +1,11 @@
 {
   "name": "api_restfull_task_yuna_example",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "app.js",
-  "author":"yuna Goncharov",
+  "author": "yuna goncharov",
   "scripts": {
     "test": "app.js"
   },
-  "author": "yuna goncharov",
   "license": "ISC",
   "description": "",
   "dependencies": {
