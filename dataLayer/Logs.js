@@ -32,7 +32,7 @@ const searchLogById = router.get('/logs/:logId', (req, res) => {
 //add new log to mysql table
 const createNewLog = router.post('/logs',  (req, res) => {
     const logData = req.body;
-    // console.log(req)
+    console.log(req)
 
     console.log(logData);
     if (!logData) {
