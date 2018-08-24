@@ -5,6 +5,9 @@ Installation:
 Using npm: - in order to install:
 
 $  npm install
+
+and
+
 $npm i api_restfull_task_yuna_example
 
 
