@@ -5,12 +5,13 @@ const router = express.Router();
 const connection = require('../config.js');
 
 
-const getLogs = router.get('/logs',  (req, res) => {
+const getLogs = router.get('/logs', function (req, res) {
     console.log(req);
     const queryString = "SELECT * FROM logs";
-    connection().query(queryString,  (err, rows, fields) => {
+    connection().query(queryString,  function (error, results, fields) {
         if (error) return res.status(400).send({ error:true, message: 'Invalid request, please try again' });
-        res.json(rows)
+
+        res.end(JSON.stringify(results));
     });
 });
 
@@ -28,7 +29,7 @@ const searchLogById = router.get('/logs/:logId', (req, res) => {
 });
 
 
-
+//add new log to mysql table
 const createNewLog = router.post('/logs',  (req, res) => {
     const logData = req.body;
     // console.log(req)
