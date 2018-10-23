@@ -62,5 +62,8 @@ const deleteLog = router.delete('/logs/:logId',  (req, res) => {
     });
 }) ;
 
+
+console.log("test");
+
 module.exports = router;
 
